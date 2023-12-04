@@ -9,83 +9,6 @@ Links: [Project webpage](https://smhongok.github.io/robustness.html), [Paper](ht
 
 <br><br><br>
 
-## Our contributions
-
-<p align="center">
-  <img src="figs/1-01.png"  width="500" >
-</p>
-
-Unintended severe artifacts occur in conditional normalizing flows for inverse problems in imaging, which hinder their effectiveness.
-
-<br>
-
-Conditional normalizing flow: A generative model w/ fastness, diversity.
-
-Inverse Problems in Imaging: Super-resolution, low-light enhancement, etc.  
-
-<br><br><br>
-
-<p align="center">
-  <img src="figs/3-01.gif"  width="800" >
-</p>
-
-We found that these artifacts are caused by out-of-distribution (OOD) conditional inputs inducing "exploding inverses" in the conditional affine coupling layer (Aff).
-
-<br>
-
-OOD: Conditional input (i.e., **y**) whose embedding (i.e., <i>g</i><sub>**θ**</sub> (**y**)) has a large Mahalanobis distance [Lee et al., NeurIPS 2018]  from the training set.
-
-Exploding inverse: Originally reported in *unconditional* normalizing flows [Behrmann et al., AISTATS 2021], but the mechanism is different from the *conditional* normalizing flow. 
-
-<br><br><br>
-
-<p align="center">
-  <img src="figs/explodinginverse.gif"  width="400" >
-</p>
-
-Exploding inverse amplifies the magnitude of features, resulting in saturated colors (colorful artifacts) and NaN pixels (black region).
-
-<br><br><br>
-
-<p align="center">
-  <img src="figs/5a.png"  width="400" >
-</p>
-
-We revealed the origin of the errors: The slope (<i>s</i>) of the affine should have an upper bound <i>s<sub>u</sub></i> for training. <i>s</i> ≪ <i>s</i><sub><i>u</i></sub> makes the exploding inverse, and this happens when <b>y</b> is OOD.
-
-<br><br><br>
-
-<p align="center">
-  <img src="figs/remark2_01.png"  width="800" >
-</p>
-
-We propose a remark to avoid the exploding inverse. We then propose a remedy to avoid the exploding inverse: use another one but affine, following Remark 2.
-
-<br>
-
-Another one: B-spline [<a href="https://smhongok.github.io/nubsf.html">Hong et al., AAAI 2023</a>], or the modified RQ-spline (the figure).
-
-<br><br><br>
-
-<p align="center">
-  <img src="figs/2.png"  width="500" >
-</p>
-To validate our findings, we conducted experiments on a toy dataset,
-<br>
-
-<p align="center">
-  <img src="figs/6.png">
-</p>
-super-resolution space generation,
-<br>
-
-<p align="center">
-  <img src="figs/7.png">
-</p>
-and low-light image enhancement.
-
-<br><br><br>
-
 ## To run the code
 ### Environment
 ```.bash
@@ -102,6 +25,12 @@ They are originally from [SRFlow](https://github.com/andreas128/SRFlow)
 ### Train and test
 
 To run train.py and test.py, please refer [examples.sh](examples.sh).
+
+### Results
+<p align="center">
+  <img src="figs/6.png">
+</p>
+For more results, please see the [Paper](https://openaccess.thecvf.com/content/ICCV2023/papers/Hong_On_the_Robustness_of_Normalizing_Flows_for_Inverse_Problems_in_ICCV_2023_paper.pdf) or visit the [Project webpage](https://smhongok.github.io/robustness.html).
 
 
 ### Abstract

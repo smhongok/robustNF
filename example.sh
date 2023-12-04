@@ -1,2 +1,0 @@
-python train.py -opt confs/4X.yml --override "name=train_4x_RQs|datasets.train.dataroot_GT=/data/DF2K-tr|datasets.val.dataroot_GT=/data/DIV2K-va|model_path=./experiments/train_4x_RQs/models/latest_G.pth|network_G.flow.coupling=CondRQsplineSeparatedAndCond|network_G.flow.permutation_train=false|train.val_freq=100000"
-python test.py --lrtest_path /data/DIV2K-va_4X --conf_path ./experiments/train_4x_RQs/config.yml --output_path ./results/4x_RQs && python measure.py --name 4x_RQs --gt_dir /data/DIV2K-va/ --srs_dir ./results/4X_RQs/
